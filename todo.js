@@ -94,7 +94,7 @@ btn.addEventListener('click','keyup', e => {
 		alert('rggg');
 		
 	} else {
-		
+
 		generateTemp(inputt.value);
 		inputt.value = "";
 	}
