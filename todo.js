@@ -4,7 +4,7 @@ const list = document.querySelector('.todos');
 const popup = document.querySelector('.popup');
 const gPop = document.querySelector('.popup-wrapper');
 const btn = document.querySelector('.btn');
-const search = document.querySelector('.search input');
+
 gPop.style.display = "none";
 
 /***************reusable function********************/
@@ -84,17 +84,16 @@ function handler(e) {
 /************* Adding TO DO**************/
 
 //Eventlistner Add TODOS
-btn.addEventListener('click','keyup', e => {
+btn.addEventListener('click',() => {
 	
-	let inputt;
-	inputt = document.getElementById('textt');
+	let inputt = document.getElementById('textt');
 	if (!inputt.value) {
-		
+		start(10000);
 		create();
-		alert('rggg');
+		// alert('rggg');
 		
 	} else {
-
+		
 		generateTemp(inputt.value);
 		inputt.value = "";
 	}
@@ -105,7 +104,7 @@ btn.addEventListener('click','keyup', e => {
 
 /*************Deleting  TO DO**************/
 
-list.addEventListener("click", e => {
+list.addEventListener("click", () => {
 	//list.removeChild(list.lastChild);
 	let deletee;
 	deletee = document.querySelectorAll('.delete');
@@ -118,22 +117,45 @@ list.addEventListener("click", e => {
 
 /************* Fin Deleting  TO DO**************/
 
-
 /************************************* SEARCH ITEM********************************************/
 //filtering Todos :
+input = document.getElementById("myInput");
 
 //we will apply a class to the Todos that dont match and the that class will
 
 // have keyup event 
+let listItems, span;
 
-const retrieve = (term) => {
+let retrieve = (term) => {
+	span = document.getElementsByTagName('span');
+	listItems = document.querySelectorAll('.list-group-item');
+	
+	for (let i = 0; i < listItems.length; i++) {
+		
+		if (input.value) {
+			
+			if (span[i].textContent.indexOf(term) > -1) {
+				span[i].parentElement.style.display = "";
+				
+			} else {
+				
+				span[i].parentElement.classList.add('filtre');
+			}
+		} else {
+			span[i].parentElement.classList.remove('filtre');
+			
+		}
+	}
 	
 	//function pour faire un filtre i
 };
 
-//evenement de recherche des mots clés 
-search.addEventListener('keyup', () => {
+let search;
+search = document.getElementById("myInput")
+//evenement de recherche des mots clés
 
+search.addEventListener('keyup', () => {
+	retrieve(input.value)
 })
 
 /*************************************Fin SEARCH ITEM********************************************/
