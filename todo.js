@@ -48,7 +48,7 @@ function create() {
 
 /* Function generation dynamique des TODOS */
 
-const generateTemp = todo => {
+const generateTemp = (todo) => {
 	const html = `
    <li class="list-group-item d-flex justify-content-between align-items-center">
              <span>${todo}</span>
@@ -58,6 +58,9 @@ const generateTemp = todo => {
 	list.innerHTML += html;
 };
 
+function generat(todo){
+
+}
 /* function pour controller l'evenement et pour ne pas etre repeté à chaque clique */
 function onetime(node, type, callback) {
 	
@@ -73,10 +76,10 @@ onetime(gPop, 'click', handler);
 
 function handler(e) {
 	
-	if (e.target.id = 'closing') {
-		
+	if (e.target.id === 'closing') {
 		gPop.style.display = "none";
 	}
+	
 }
 
 /***************Fin reusable function********************/
@@ -88,7 +91,7 @@ btn.addEventListener('click',() => {
 	
 	let inputt = document.getElementById('textt');
 	if (!inputt.value) {
-		start(10000);
+		start(1000);
 		create();
 		// alert('rggg');
 		
@@ -102,7 +105,7 @@ btn.addEventListener('click',() => {
 
 /************* Fin Adding TO DO**************/
 
-/*************Deleting  TO DO**************/
+/*************Deleting  TO DO****************/
 
 list.addEventListener("click", () => {
 	//list.removeChild(list.lastChild);
@@ -131,7 +134,6 @@ let retrieve = (term) => {
 	listItems = document.querySelectorAll('.list-group-item');
 	
 	for (let i = 0; i < listItems.length; i++) {
-		
 		if (input.value) {
 			
 			if (span[i].textContent.indexOf(term) > -1) {
@@ -153,10 +155,11 @@ let retrieve = (term) => {
 let search;
 search = document.getElementById("myInput")
 //evenement de recherche des mots clés
-
 search.addEventListener('keyup', () => {
 	retrieve(input.value)
 })
+
+
 
 /*************************************Fin SEARCH ITEM********************************************/
 
